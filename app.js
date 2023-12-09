@@ -18,10 +18,12 @@ app.set('views' , path.join(__dirname, './src/views'));
 
 
 // Middlewares de configuracion
-app.use(express.static ('public_html'));
+
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(express.static ('public_html'));
+
 
 
 //Rutas
