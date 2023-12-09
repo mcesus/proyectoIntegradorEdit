@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const {admin, createItem,createView,editItem, editView, deleteItem}= require('../controllers/admin.controller');
 
-router.get('/', (req,res)=> res.send ('esta es la vista de Admin'));
-router.get('/create', (req,res)=> res.send ('esta es la vista para Crear un nuevo item'));
-router.post('/create', (req,res)=> res.send ('esta es la ruta para Agregar un nuevo item'));
-router.get('/edit/:id', (req,res)=> res.send ('esta es la vista para Editar un item especifico'));
-router.put('/edit/:id', (req,res)=> res.send ('esta es la vista para Impactar la modificacion '));
-router.delete('/delete/:id', (req,res)=> res.send ('esta es la vista para Eliminar un item especifico'));
+router.get('/',admin );
+router.get('/create',createView );
+router.post('/create', createItem);
+router.get('/edit/:id',editView );
+router.put('/edit/:id', editItem );
+router.delete('/delete/:id', deleteItem );
 
 module.exports = router;
