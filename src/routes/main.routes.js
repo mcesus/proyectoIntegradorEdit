@@ -10,5 +10,6 @@ router.get('/contacto', contacto);
 router.get ('/faqs', faqs);
 
 
+
 module.exports = router;
 
