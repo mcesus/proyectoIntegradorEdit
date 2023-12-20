@@ -1,5 +1,6 @@
 const path= require ('path');
-const data= [
+const {getAll, getOne}= require('../models/product.model');
+const json= [
     {
     product_id: 1,
     licence_name: "Pokemon",
@@ -9,8 +10,8 @@ const data= [
     product_price: 1799.99,
     dues: 10,
     product_sku: "PKM001001",
-    img_front: "/multimedia/pokemon/pidgeotto-1.webp",
-    img_back: "/multimedia/pokemon/pidgeotto-box.webp"
+    img_front: "/multimedia/pokemon/pikachu-1.webp",
+    img_back: "/multimedia/pokemon/pikachu-box.webp"
     },
     {
     product_id: 2,
@@ -112,18 +113,20 @@ const data= [
 
     ];
 module.exports = {
-    shop: (req, res) =>{
+    shop: async(req, res) =>{
         
-        
+        const data = await getAll();
+        console.log(data);
         res.render(path.resolve (__dirname, '../views/shop/shop.ejs'),{
             title: "Tienda",
             data
         });
     },
 
-    item: (req, res)=> {
+    item: async(req, res)=> {
         const itemId =req.params.id;
-        const item= data.find(item => item.product_id == itemId)
+        const [item]= await getOne(itemId);
+        
         res.render(path.resolve (__dirname, '../views/shop/item.ejs'),{
             title: "Item",
             item
